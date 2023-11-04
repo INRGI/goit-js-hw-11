@@ -31,6 +31,7 @@ function onSubmit(event) {
             } else {
                 renderGallery(data.hits);
                 simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+                loadMoreSelect.classList.remove('is-hidden');
                 Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
             }
         })
@@ -39,7 +40,23 @@ function onSubmit(event) {
             searchFormSelect.reset();
         })
 }
-function onLoadMore() { };
+function onLoadMore() {
+    page += 1;
+    simpleLightBox.destroy();
+    loadMoreSelect.classList.add('is-hidden');
+    getImages(query, page)
+        .then(({ data }) => {
+            const totalPages = Math.ceil(data.totalHits / 40);
+            renderGallery(data.hits);
+            simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+            loadMoreSelect.classList.remove('is-hidden');
+            if (page > totalPages) {
+                loadMoreSelect.classList.add('is-hidden');
+                Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
+            }
+        })
+        .catch(error => console.log(error))
+};
 
 function renderGallery(images) {
     const markup = images.map(image => {

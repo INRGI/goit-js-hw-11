@@ -1,3 +1,40 @@
 .is-hidden {
   display: none;
 }
+p{
+  margin: 0;
+}
+.gallery{
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.gallery__link{
+  margin-top: 20px;
+  margin-left: 20px;
+  min-width: 320px;
+  flex-basis: calc(25% - 20px);
+  border: 2px solid;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.gallery-item__img{
+  object-fit: cover;
+  height: 30vh;
+}
+.gallery-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.info{
+  padding: 10px;
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+}
+.info-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
