@@ -14,6 +14,7 @@ let simpleLightBox;
 searchFormSelect.addEventListener('submit', onSubmit);
 loadMoreSelect.addEventListener('click', onLoadMore);
 
+
 function onSubmit(event) {
     event.preventDefault()
     page = 1;
