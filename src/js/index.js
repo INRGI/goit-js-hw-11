@@ -51,7 +51,9 @@ function onLoadMore() {
             renderGallery(data.hits);
             simpleLightBox = new SimpleLightbox('.gallery a').refresh();
             loadMoreSelect.classList.remove('is-hidden');
-            if (page > totalPages) {
+
+            if (page >= totalPages) {
+                console.log('tyt')
                 loadMoreSelect.classList.add('is-hidden');
                 Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
             }
