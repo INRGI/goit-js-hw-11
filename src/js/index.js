@@ -48,15 +48,16 @@ function onLoadMore() {
     getImages(query, page)
         .then(({ data }) => {
             const totalPages = Math.ceil(data.totalHits / 40);
-            renderGallery(data.hits);
-            simpleLightBox = new SimpleLightbox('.gallery a').refresh();
             loadMoreSelect.classList.remove('is-hidden');
-
             if (page >= totalPages) {
-                console.log('tyt')
                 loadMoreSelect.classList.add('is-hidden');
                 Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
             }
+            renderGallery(data.hits);
+            simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+
+
+            
         })
         .catch(error => console.log(error))
 };
